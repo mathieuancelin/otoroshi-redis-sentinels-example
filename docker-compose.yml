@@ -1,0 +1,62 @@
+version: '3'
+services:
+
+  redis1:
+    image: redis:3.2-alpine
+    expose:
+      - 6379
+    volumes:
+      - ./data/redis1-data:/data
+    ports:
+      - 6401:6379
+
+  sentinel1:
+    image: redis:3.2-alpine
+    expose:
+      - 26379
+    ports:
+      - 26401:26379
+    volumes:
+      - ./sentinel1.conf:/etc/sentinel.conf
+      - ./data/sentinel1-data:/data    
+    command: redis-server /etc/sentinel.conf --sentinel
+
+  redis2:
+    image: redis:3.2-alpine
+    expose:
+      - 6379
+    ports:
+      - 6402:6379
+    volumes:
+      - ./data/redis2-data:/data
+
+  sentinel2:
+    image: redis:3.2-alpine
+    expose:
+      - 26379
+    ports:
+      - 26402:26379
+    volumes:
+      - ./sentinel2.conf:/etc/sentinel.conf
+      - ./data/sentinel2-data:/data    
+    command: redis-server /etc/sentinel.conf --sentinel
+
+  redis3:
+    image: redis:3.2-alpine
+    expose:
+      - 6379
+    ports:
+      - 6403:6379
+    volumes:
+      - ./data/redis3-data:/data
+
+  sentinel3:
+    image: redis:3.2-alpine
+    expose:
+      - 26379
+    ports:
+      - 26403:26379
+    volumes:
+      - ./sentinel3.conf:/etc/sentinel.conf
+      - ./data/sentinel3-data:/data    
+    command: redis-server /etc/sentinel.conf --sentinel
