@@ -1,6 +1,19 @@
 version: '3'
 services:
 
+  otoroshi:
+    image: maif/otoroshi-jdk11:1.4.20
+    environment:     
+      - APP_STORAGE=redis-sentinel-lf
+      - REDIS_SENTINELS_LF_MEMBERS=sentinel1:26379,sentinel2:26379,sentinel3:26379
+      - REDIS_SENTINELS_LF_MASTER=my_redis_master
+      - OTOROSHI_INITIAL_ADMIN_PASSWORD=password
+      - PORT=8080
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+
   redis1:
     image: redis:3.2-alpine
     expose:
