@@ -44,3 +44,8 @@ java \
 curl http://127.0.0.1:8080/metrics
 open http://otoroshi.oto.tools:8080 # login with admin@otoroshi.io / password
 ```
+
+
+```sh
+docker run -it --rm redis redis-cli -h 192.168.86.15 -p 26401 SENTINEL get-master-addr-by-name my_redis_master
+```
