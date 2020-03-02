@@ -2,7 +2,7 @@ version: '3'
 services:
 
   otoroshi:
-    image: maif/otoroshi:1.4.21-dev-1583162692
+    image: maif/otoroshi:1.4.21-dev-1583163138
     environment:     
       - APP_STORAGE=redis-sentinel-lf
       - REDIS_SENTINELS_LF_MEMBERS=sentinel1:26379,sentinel2:26379,sentinel3:26379
